@@ -1,5 +1,9 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import styles from './app.module.scss';
+import MainPage from './pages/MainPage';
+import Search from './components/search';
+import NotFound from './components/notFound';
 const App = () => {
   return (
     <div id="content">
@@ -10,9 +14,11 @@ const App = () => {
           <p>Hesap Uzmanı</p>
         </div>
       </div>
-      <div id="account">
-        <div id="accountArena"></div>
-      </div>
+      <Routes>
+        <Route index element={<Search />} />
+        <Route path="deneme" element={<MainPage />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 };
