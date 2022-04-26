@@ -1,1 +1,91 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
+$red: #fa4616;
+@mixin responsiveText($fontSize) {
+  font-size: $fontSize;
+  @media screen and (max-width: 992px) {
+    font-size: $fontSize * 0.7;
+  }
+  @media screen and (max-width: 525px) {
+    font-size: $fontSize * 0.5;
+  }
+  @media screen and (max-width: 375px) {
+    font-size: $fontSize * 0.3;
+  }
+}
+body {
+  font-family: 'Montserrat';
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+#bar {
+  height: 16px;
+  background-color: $red;
+  width: 100%;
+}
+#content {
+  opacity: 0;
+  animation: showBox 0.6s forwards;
+}
+#header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 120px;
+  transition: all 0.5s;
+  @media screen and (max-width: 992px) {
+    margin-top: 70px;
+  }
+  @media screen and (max-width: 768px) {
+    margin-top: 30px;
+  }
+  div {
+    h1 {
+      width: 230px;
+      text-align: center;
+      color: $red;
+      font-style: normal;
+      font-weight: 500;
+      @include responsiveText(2.25rem);
+    }
+    p {
+      @include responsiveText(1rem);
+      text-align: center;
+      margin-top: 1.7%;
+      color: #000;
+      font-weight: bold;
+    }
+  }
+}
+
+#account {
+  width: 100%;
+  min-height: 720px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 64px 0;
+  transition: all 0.5s;
+  @media screen and (max-width: 992px) {
+    margin: 32px 0;
+  }
+  @media screen and (max-width: 768px) {
+    margin: 15px 0;
+  }
+  #accountArena {
+    width: 720px;
+    min-height: 720px;
+    margin: 0 5px;
+    border-radius: 12px;
+    border: 1px solid #c3c3c3;
+  }
+}
+
+@keyframes showBox {
+  to {
+    opacity: 1;
+  }
+}
