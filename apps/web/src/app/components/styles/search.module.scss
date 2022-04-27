@@ -103,7 +103,9 @@ $black: #333333;
           height: 48px;
           width: 168px;
           cursor: pointer;
-
+          display: flex;
+          justify-content: center;
+          align-items: center;
           @media screen and (max-width: 992px) {
             width: 100px;
             height: 34px;
@@ -114,6 +116,10 @@ $black: #333333;
           }
           @media screen and (max-width: 375px) {
             height: 25px;
+          }
+          .plus {
+            color: #fff;
+            font-size: 22px;
           }
         }
       }

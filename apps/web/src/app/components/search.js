@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 import styles from './styles/search.module.scss';
+import { IoAddSharp } from 'react-icons/io5';
 const Search = () => {
   return (
     <div id={styles.search}>
@@ -29,7 +30,10 @@ const Search = () => {
             </div>
             <div>
               <br />
-              <Button>YENİ HESAP</Button>
+              <Button>
+                <IoAddSharp className={styles.plus} />
+                YENİ HESAP
+              </Button>
             </div>
           </Form.Group>
         </Form>

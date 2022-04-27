@@ -30,42 +30,52 @@ $black: #333333;
       justify-content: space-around;
       max-width: 320px;
     }
-    .mainPage {
-      border: 0;
-      background-color: $red;
-      border-radius: 12px;
-      color: #fff;
-      font-weight: 400;
-      @include responsiveText(12px);
-      height: 48px;
-      width: 168px;
-      cursor: pointer;
-      @media screen and (max-width: 992px) {
-        width: 140px;
-        height: 34px;
+    a {
+      text-decoration: none;
+      .mainPage {
+        border: 0;
+        background-color: $red;
+        border-radius: 12px;
+        color: #fff;
+        font-weight: 400;
+        @include responsiveText(12px);
+        height: 48px;
+        width: 168px;
+        cursor: pointer;
+        @media screen and (max-width: 992px) {
+          width: 140px;
+          height: 34px;
+        }
+        @media screen and (max-width: 768px) {
+          width: 80px;
+          height: 30px;
+        }
       }
-      @media screen and (max-width: 768px) {
-        width: 80px;
-        height: 30px;
-      }
-    }
-    .newActivity {
-      border: 0;
-      background-color: $red;
-      border-radius: 12px;
-      color: #fff;
-      font-weight: 400;
-      @include responsiveText(12px);
-      height: 48px;
-      width: 204px;
-      cursor: pointer;
-      @media screen and (max-width: 992px) {
-        width: 190px;
-        height: 34px;
-      }
-      @media screen and (max-width: 768px) {
-        width: 100px;
-        height: 30px;
+      .newActivity {
+        border: 0;
+        background-color: $red;
+        border-radius: 12px;
+        color: #fff;
+        font-weight: 400;
+        @include responsiveText(12px);
+        height: 48px;
+        width: 204px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @media screen and (max-width: 992px) {
+          width: 190px;
+          height: 34px;
+        }
+        @media screen and (max-width: 768px) {
+          width: 100px;
+          height: 30px;
+        }
+        .plus {
+          color: #fff;
+          font-size: 18px;
+        }
       }
     }
   }
