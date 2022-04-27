@@ -44,12 +44,17 @@ $darkGray: #636363;
         gap: 4px;
       }
       .accountFlag {
-        height: 48px;
-        @media screen and (max-width: 768px) {
-          height: 30px;
-        }
-        @media screen and (max-width: 375px) {
-          height: 22px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        img {
+          height: 48px;
+          @media screen and (max-width: 768px) {
+            height: 30px;
+          }
+          @media screen and (max-width: 375px) {
+            height: 22px;
+          }
         }
       }
       div.accountDescription {

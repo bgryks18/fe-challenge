@@ -1,12 +1,15 @@
 import React from 'react';
 import styles from './styles/accountActivity.module.scss';
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
+import Flag from 'react-world-flags';
 const AccountActivity = () => {
   return (
     <div id={styles.accountActivity}>
       <div>
         <div className={styles.accountInfo}>
-          <div className={styles.accountFlag}></div>
+          <div className={styles.accountFlag}>
+            <Flag code="tr" fallback={<span>Unknown</span>} />
+          </div>
           <div className={styles.accountDescription}>
             <span className={styles.accountName}>Super Hesap</span>
             <span className={styles.accountDescription}>
