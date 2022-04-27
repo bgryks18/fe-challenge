@@ -1,0 +1,195 @@
+@mixin responsiveText($fontSize) {
+  font-size: $fontSize;
+  @media screen and (max-width: 992px) {
+    font-size: $fontSize * 0.7;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: $fontSize * 0.5;
+  }
+  @media screen and (max-width: 525px) {
+    font-size: $fontSize * 0.4;
+  }
+}
+$lightGray: #e6eedb;
+$red: #fa4616;
+$black: #333333;
+$border: #c3c3c3;
+$darkGray: #636363;
+#accountActivity {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  div {
+    .accountInfo {
+      width: 720px;
+      height: 80px;
+      display: grid;
+      grid-template-columns: 72px auto;
+      align-items: center;
+      gap: 16px;
+      background-color: $lightGray;
+      border-radius: 12px;
+      @media screen and (max-width: 768px) {
+        width: 400px;
+        height: 40px;
+        grid-template-columns: 62px auto;
+        gap: 8px;
+      }
+      @media screen and (max-width: 375px) {
+        width: 270px;
+        height: 30px;
+        grid-template-columns: 52px auto;
+        gap: 4px;
+      }
+      .accountFlag {
+        height: 48px;
+        @media screen and (max-width: 768px) {
+          height: 30px;
+        }
+        @media screen and (max-width: 375px) {
+          height: 22px;
+        }
+      }
+      div.accountDescription {
+        display: flex;
+        flex-direction: column;
+        span.accountName {
+          font-weight: 500;
+          @include responsiveText(16px);
+        }
+        span.accountDescription {
+          font-weight: 300;
+          @include responsiveText(12px);
+        }
+      }
+    }
+    .activityListHeader {
+      margin-top: 32px;
+      margin-bottom: 24px;
+      @media screen and (max-width: 992px) {
+        margin-top: 22px;
+        margin-bottom: 12px;
+      }
+      display: flex;
+      justify-content: space-between;
+      span.title {
+        font-weight: 500;
+        @include responsiveText(16px);
+        color: $red;
+      }
+      span.results {
+        font-weight: 400;
+        @include responsiveText(14px);
+        font-size: 14px;
+      }
+    }
+    .activityList {
+      display: grid;
+      grid-template-rows: repeat(4, 72px);
+      border-bottom: 1px solid $border;
+      @media screen and (max-width: 992px) {
+        grid-template-rows: repeat(4, 52px);
+      }
+      @media screen and (max-width: 768px) {
+        grid-template-rows: repeat(4, 38px);
+      }
+      .activityListItem {
+        display: grid;
+        grid-template-columns: 72px auto;
+        @media screen and (max-width: 992px) {
+          grid-template-columns: 52px auto;
+        }
+        @media screen and (max-width: 768px) {
+          grid-template-columns: 38px auto;
+        }
+        div {
+          border-top: 1px solid $border;
+          &:first-child {
+            border-right: 1px solid $border;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            span.day {
+              font-weight: 600;
+              @include responsiveText(16px);
+            }
+            span.month {
+              font-weight: 400;
+              @include responsiveText(14px);
+            }
+          }
+          &:nth-child(2) {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            text-align: center;
+            padding-left: 31px;
+            @media screen and (max-width: 992px) {
+              padding-left: 22px;
+            }
+            @media screen and (max-width: 768px) {
+              padding-left: 14px;
+            }
+            span.process {
+              font-weight: 600;
+              @include responsiveText(16px);
+            }
+            span.place {
+              font-weight: 400;
+              @include responsiveText(14px);
+              color: $darkGray;
+            }
+          }
+        }
+      }
+    }
+    .pagination {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @media screen and (max-width: 992px) {
+        margin-top: 16px;
+      }
+      @media screen and (max-width: 768px) {
+        margin-top: 12px;
+      }
+      .paginationItems {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 188px;
+        height: 48px;
+        border: 1px solid $border;
+        border-radius: 24px;
+        .paginationItem {
+          width: 24px;
+          height: 24px;
+          font-weight: 500;
+          font-size: 12px;
+          color: $border;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 24px;
+          margin-left: 4px;
+          cursor: pointer;
+          transition: all 0.5s;
+          &:last-child {
+            margin-right: 4px;
+          }
+          &.chosen,
+          &:hover {
+            background-color: $red;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}
