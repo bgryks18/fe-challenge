@@ -28,8 +28,15 @@ const AccountActivity = () => {
               <span className={styles.month}>KASIM</span>
             </div>
             <div>
-              <span className={styles.process}>Magiclick Market Alışveriş</span>
-              <span className={styles.place}>Market</span>
+              <div className={styles.info}>
+                <span className={styles.process}>
+                  Magiclick Market Alışveriş
+                </span>
+                <span className={styles.place}>Market</span>
+              </div>
+              <div className={styles.spending}>
+                <span className={styles.spent}>-120 ₺</span>
+              </div>
             </div>
           </div>
           <div className={styles.activityListItem}>
@@ -38,8 +45,15 @@ const AccountActivity = () => {
               <span className={styles.month}>KASIM</span>
             </div>
             <div>
-              <span className={styles.process}>Magiclick Market Alışveriş</span>
-              <span className={styles.place}>Market</span>
+              <div className={styles.info}>
+                <span className={styles.process}>
+                  Magiclick Market Alışveriş
+                </span>
+                <span className={styles.place}>Market</span>
+              </div>
+              <div className={styles.spending}>
+                <span>84 ₺</span>
+              </div>
             </div>
           </div>
           <div className={styles.activityListItem}>
@@ -48,8 +62,15 @@ const AccountActivity = () => {
               <span className={styles.month}>KASIM</span>
             </div>
             <div>
-              <span className={styles.process}>Magiclick Market Alışveriş</span>
-              <span className={styles.place}>Market</span>
+              <div className={styles.info}>
+                <span className={styles.process}>
+                  Magiclick Market Alışveriş
+                </span>
+                <span className={styles.place}>Market</span>
+              </div>
+              <div className={styles.spending}>
+                <span className={styles.spent}>-42 ₺</span>
+              </div>
             </div>
           </div>
           <div className={styles.activityListItem}>
@@ -58,8 +79,15 @@ const AccountActivity = () => {
               <span className={styles.month}>KASIM</span>
             </div>
             <div>
-              <span className={styles.process}>Magiclick Market Alışveriş</span>
-              <span className={styles.place}>Market</span>
+              <div className={styles.info}>
+                <span className={styles.process}>
+                  Magiclick Market Alışveriş
+                </span>
+                <span className={styles.place}>Market</span>
+              </div>
+              <div className={styles.spending}>
+                <span>67 ₺</span>
+              </div>
             </div>
           </div>
         </div>
