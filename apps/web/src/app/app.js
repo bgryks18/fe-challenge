@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import styles from './app.module.scss';
 import MainPage from './pages/MainPage';
-import Search from './components/search';
+import Activity from './pages/Activity';
 import NotFound from './components/notFound';
 import 'bootstrap/dist/css/bootstrap.min.css';
 const App = () => {
@@ -17,7 +17,7 @@ const App = () => {
       </div>
       <Routes>
         <Route index element={<MainPage />} />
-        <Route path="deneme" element={<MainPage />} />
+        <Route path="Activity" element={<Activity />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
