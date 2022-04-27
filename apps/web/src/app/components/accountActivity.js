@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './styles/accountActivity.module.scss';
+import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
 const AccountActivity = () => {
   return (
     <div id={styles.accountActivity}>
@@ -61,10 +62,16 @@ const AccountActivity = () => {
         </div>
         <div className={styles.pagination}>
           <div className={styles.paginationItems}>
+            <div className={`${styles.paginationItem} ${styles.move}`}>
+              <IoIosArrowBack />
+            </div>
             <div className={`${styles.paginationItem} ${styles.chosen}`}>1</div>
             <div className={styles.paginationItem}>2</div>
             <div className={styles.paginationItem}>3</div>
             <div className={styles.paginationItem}>4</div>
+            <div className={`${styles.paginationItem} ${styles.move}`}>
+              <IoIosArrowForward />
+            </div>
           </div>
         </div>
       </div>

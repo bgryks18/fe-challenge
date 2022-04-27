@@ -188,6 +188,13 @@ $darkGray: #636363;
             background-color: $red;
             color: #fff;
           }
+          &.move {
+            font-size: 18px;
+            &:hover {
+              background: transparent;
+              color: $black;
+            }
+          }
         }
       }
     }
