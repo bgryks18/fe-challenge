@@ -16,7 +16,7 @@ const App = () => {
         </div>
       </div>
       <Routes>
-        <Route index element={<Search />} />
+        <Route index element={<MainPage />} />
         <Route path="deneme" element={<MainPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
