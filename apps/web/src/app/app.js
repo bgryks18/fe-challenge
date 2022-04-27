@@ -4,6 +4,7 @@ import styles from './app.module.scss';
 import MainPage from './pages/MainPage';
 import Search from './components/search';
 import NotFound from './components/notFound';
+import 'bootstrap/dist/css/bootstrap.min.css';
 const App = () => {
   return (
     <div id="content">
