@@ -3,13 +3,13 @@ $red: #fa4616;
 @mixin responsiveText($fontSize) {
   font-size: $fontSize;
   @media screen and (max-width: 992px) {
-    font-size: $fontSize * 0.7;
+    font-size: $fontSize * 0.75;
   }
-  @media screen and (max-width: 525px) {
-    font-size: $fontSize * 0.5;
+  @media screen and (max-width: 768px) {
+    font-size: $fontSize * 0.6;
   }
   @media screen and (max-width: 375px) {
-    font-size: $fontSize * 0.3;
+    font-size: $fontSize * 0.5;
   }
 }
 body {
@@ -57,7 +57,7 @@ body {
       text-align: center;
       margin-top: 1.7%;
       color: #000;
-      font-weight: bold;
+      font-weight: 500;
     }
   }
 }
