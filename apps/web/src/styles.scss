@@ -101,8 +101,7 @@ body {
   @media screen and (max-width: 992px) {
     width: 500px;
     position: absolute;
-    overflow: scroll;
-    height: 100vh;
+    overflow-y: auto;
   }
   @media screen and (max-width: 768px) {
     max-width: 400px;
@@ -297,20 +296,20 @@ body {
         left: 15px;
       }
       @media screen and (max-width: 992px) {
-        width: 102px;
-        height: 43px;
+        width: 92px;
+        height: 40px;
       }
       @media screen and (max-width: 768px) {
-        width: 92px;
-        height: 38px;
+        width: 82px;
+        height: 35px;
       }
       @media screen and (max-width: 525px) {
-        width: 82px;
-        height: 33px;
-      }
-      @media screen and (max-width: 365px) {
         width: 72px;
-        height: 28px;
+        height: 30px;
+      }
+      @media screen and (max-width: 375px) {
+        width: 62px;
+        height: 25px;
       }
     }
   }
