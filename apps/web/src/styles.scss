@@ -35,17 +35,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 120px;
+  margin-top: 104px;
   transition: all 0.5s;
   @media screen and (max-width: 992px) {
-    margin-top: 70px;
+    margin-top: 60px;
   }
   @media screen and (max-width: 768px) {
     margin-top: 30px;
   }
   div {
     h1 {
-      width: 230px;
       text-align: center;
       color: $red;
       font-style: normal;
@@ -55,6 +54,7 @@ body {
     p {
       @include responsiveText(1rem);
       text-align: center;
+      margin: 0;
       margin-top: 8px;
       color: #000;
       font-weight: 500;
