@@ -1,8 +1,13 @@
-import React from 'react';
-import { Form, Button } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Modal, Form, Button } from 'react-bootstrap';
 import styles from './styles/search.module.scss';
 import { IoAddSharp } from 'react-icons/io5';
+import NewAccount from '../newAccount';
 const Search = () => {
+  const [newAccountModal, setNewAccountModal] = useState(false);
+  const switchAccountModal = () => {
+    setNewAccountModal(!newAccountModal);
+  };
   return (
     <div id={styles.search}>
       <div>
@@ -30,10 +35,15 @@ const Search = () => {
             </div>
             <div>
               <br />
-              <Button>
+              <Button onClick={switchAccountModal}>
                 <IoAddSharp className={styles.plus} />
                 YENİ HESAP
               </Button>
+              <Modal
+                show={newAccountModal}
+                onHide={switchAccountModal}
+                dialogAs={NewAccount}
+              />
             </div>
           </Form.Group>
         </Form>

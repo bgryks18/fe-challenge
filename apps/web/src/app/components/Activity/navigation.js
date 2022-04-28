@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from './styles/navigation.module.scss';
 import { IoAddSharp, IoArrowBackOutline } from 'react-icons/io5';
 import { Modal } from 'react-bootstrap';
-import NewAccount from '../newAccountActivity';
+import NewActivity from '../newAccountActivity';
 const Navigation = () => {
   const [newActivityModal, setNewActivityModal] = useState(false);
   const switchActivityModal = () => {
@@ -27,7 +27,7 @@ const Navigation = () => {
         <Modal
           show={newActivityModal}
           onHide={switchActivityModal}
-          dialogAs={NewAccount}
+          dialogAs={NewActivity}
         />
       </div>
     </div>
