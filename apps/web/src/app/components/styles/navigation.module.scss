@@ -33,15 +33,9 @@ $black: #333333;
     a {
       text-decoration: none;
       .mainPage {
-        border: 0;
-        background-color: $red;
-        border-radius: 12px;
-        color: #fff;
-        font-weight: 400;
-        @include responsiveText(12px);
         height: 48px;
         width: 168px;
-        cursor: pointer;
+        @include responsiveText(12px);
         @media screen and (max-width: 992px) {
           width: 140px;
           height: 34px;
@@ -52,18 +46,9 @@ $black: #333333;
         }
       }
       .newActivity {
-        border: 0;
-        background-color: $red;
-        border-radius: 12px;
-        color: #fff;
-        font-weight: 400;
-        @include responsiveText(12px);
         height: 48px;
         width: 204px;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include responsiveText(12px);
         @media screen and (max-width: 992px) {
           width: 190px;
           height: 34px;

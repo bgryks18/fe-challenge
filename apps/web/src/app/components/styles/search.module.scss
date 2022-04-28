@@ -94,18 +94,9 @@ $black: #333333;
           }
         }
         button {
-          border: 0;
-          background-color: $red;
-          border-radius: 12px;
-          color: #fff;
-          font-weight: 400;
-          @include responsiveText(12px);
           height: 48px;
           width: 168px;
-          cursor: pointer;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+          @include responsiveText(12px);
           @media screen and (max-width: 992px) {
             width: 100px;
             height: 34px;
@@ -119,7 +110,6 @@ $black: #333333;
           }
           .plus {
             color: #fff;
-            font-size: 22px;
           }
         }
       }
