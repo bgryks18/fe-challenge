@@ -1,6 +1,6 @@
 import React from 'react';
-import Accounts from '../components/accounts';
-import Search from '../components/search';
+import Accounts from '../components/MainPage/accounts';
+import Search from '../components/MainPage/search';
 const MainPage = () => {
   return (
     <>
