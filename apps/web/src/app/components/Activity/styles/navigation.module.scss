@@ -32,35 +32,35 @@ $black: #333333;
     }
     a {
       text-decoration: none;
-      .mainPage {
-        height: 48px;
-        width: 168px;
-        @include responsiveText(12px);
-        @media screen and (max-width: 992px) {
-          width: 140px;
-          height: 34px;
-        }
-        @media screen and (max-width: 768px) {
-          width: 80px;
-          height: 30px;
-        }
+    }
+    .mainPage {
+      height: 48px;
+      width: 168px;
+      @include responsiveText(12px);
+      @media screen and (max-width: 992px) {
+        width: 140px;
+        height: 34px;
       }
-      .newActivity {
-        height: 48px;
-        width: 204px;
-        @include responsiveText(12px);
-        @media screen and (max-width: 992px) {
-          width: 190px;
-          height: 34px;
-        }
-        @media screen and (max-width: 768px) {
-          width: 100px;
-          height: 30px;
-        }
-        .plus {
-          color: #fff;
-          font-size: 18px;
-        }
+      @media screen and (max-width: 768px) {
+        width: 80px;
+        height: 30px;
+      }
+    }
+    .newActivity {
+      height: 48px;
+      width: 204px;
+      @include responsiveText(12px);
+      @media screen and (max-width: 992px) {
+        width: 190px;
+        height: 34px;
+      }
+      @media screen and (max-width: 768px) {
+        width: 100px;
+        height: 30px;
+      }
+      .plus {
+        color: #fff;
+        font-size: 18px;
       }
     }
   }

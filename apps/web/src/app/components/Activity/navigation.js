@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import styles from './styles/navigation.module.scss';
 import { IoAddSharp, IoArrowBackOutline } from 'react-icons/io5';
+import { Modal } from 'react-bootstrap';
+import NewAccount from '../newAccountActivity';
 const Navigation = () => {
+  const [newActivityModal, setNewActivityModal] = useState(false);
+  const switchActivityModal = () => {
+    setNewActivityModal(!newActivityModal);
+  };
   return (
     <div id={styles.navigation}>
       <div>
@@ -14,12 +20,15 @@ const Navigation = () => {
           </Button>
         </Link>
 
-        <Link to="/">
-          <Button className={styles.newActivity}>
-            <IoAddSharp className={styles.plus} />
-            YENİ HESAP HAREKETİ
-          </Button>
-        </Link>
+        <Button className={styles.newActivity} onClick={switchActivityModal}>
+          <IoAddSharp className={styles.plus} />
+          YENİ HESAP HAREKETİ
+        </Button>
+        <Modal
+          show={newActivityModal}
+          onHide={switchActivityModal}
+          dialogAs={NewAccount}
+        />
       </div>
     </div>
   );

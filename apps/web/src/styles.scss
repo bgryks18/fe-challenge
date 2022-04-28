@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
 $red: #fa4616;
+$black: #333333;
+$gray: #636363;
+$green: #008000;
+$border: #c3c3c3;
 @mixin responsiveText($fontSize) {
   font-size: $fontSize;
   @media screen and (max-width: 992px) {
@@ -83,6 +87,110 @@ button {
     @media screen and (max-width: 768px) {
       left: 8px;
       font-size: 16px;
+    }
+  }
+}
+#specialModalBox {
+  width: 640px;
+  background-color: white;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  min-height: 309px;
+  .close {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    margin-top: 12.34px;
+    margin-right: 12.34px;
+    cursor: pointer;
+    svg {
+      transition: all 0.5s;
+      color: $black;
+      font-size: 20px;
+    }
+    &:hover > svg {
+      transform: rotate(90deg);
+    }
+  }
+  .title {
+    margin-top: 48px;
+    margin-left: 48px;
+    margin-right: 56px;
+    margin-bottom: 0;
+    h2 {
+      font-weight: 500;
+      font-size: 24px;
+      margin: 0;
+    }
+  }
+  .formArea {
+    margin: 0;
+    margin-top: 20px;
+    margin-left: 48px;
+    margin-right: 48px;
+  }
+  form {
+    .row {
+      --bs-gutter-x: 16px; // columnların arasındaki boşluk
+      margin-top: 24px;
+    }
+    label {
+      font-weight: 500;
+      @include responsiveText(16px);
+      cursor: pointer;
+      color: $red;
+      &.form-check-label {
+        font-weight: 500;
+        font-size: 11px;
+        color: $gray;
+        margin-left: 8px;
+      }
+    }
+    input,
+    select,
+    textarea {
+      border: 2px solid $border;
+      border-radius: 12px;
+      margin: 0;
+      transition: all 0.7s;
+      font-weight: 500;
+      @include responsiveText(14px);
+      resize: none;
+    }
+    textarea {
+      min-height: 96px;
+    }
+    .form-check-input {
+      background-color: #f3f3f3;
+      height: 21px;
+      width: 21px;
+      cursor: pointer;
+    }
+    .form-check-input:checked[type='radio'] {
+      background: $green;
+      border: 4px solid #f3f3f3;
+    }
+    .form-check {
+      padding: 0;
+    }
+  }
+  .ok {
+    margin-top: 24px;
+    margin-bottom: 48px;
+    margin-right: 48px;
+    display: flex;
+    justify-content: flex-end;
+    button {
+      width: 112px;
+      height: 48px;
+      @include responsiveText(12px);
+      justify-content: flex-end !important;
+      svg {
+        left: 15px;
+      }
     }
   }
 }
