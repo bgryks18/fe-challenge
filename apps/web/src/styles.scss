@@ -292,9 +292,6 @@ body {
       height: 48px;
       @include responsiveText(12px);
       justify-content: flex-end !important;
-      svg {
-        left: 15px;
-      }
       @media screen and (max-width: 992px) {
         width: 92px;
         height: 40px;
@@ -306,12 +303,22 @@ body {
       @media screen and (max-width: 525px) {
         width: 72px;
         height: 30px;
+        justify-content: center !important;
+        & > svg {
+          left: 2px;
+        }
       }
       @media screen and (max-width: 375px) {
         width: 62px;
         height: 25px;
       }
     }
+  }
+  .error {
+    color: $red;
+    @include responsiveText(13px);
+    margin: 0;
+    transition: all 0.5s;
   }
 }
 @keyframes showBox {
