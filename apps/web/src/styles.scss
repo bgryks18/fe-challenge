@@ -97,7 +97,21 @@ button {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  min-height: 309px;
+  @media screen and (max-width: 992px) {
+    width: 500px;
+    position: absolute;
+    overflow: scroll;
+    height: 100vh;
+  }
+  @media screen and (max-width: 768px) {
+    max-width: 400px;
+  }
+  @media screen and (max-width: 525px) {
+    max-width: 350px;
+  }
+  @media screen and (max-width: 375px) {
+    max-width: 250px;
+  }
   .close {
     margin: 0;
     padding: 0;
@@ -122,7 +136,7 @@ button {
     margin-bottom: 0;
     h2 {
       font-weight: 500;
-      font-size: 24px;
+      @include responsiveText(24px);
       margin: 0;
     }
   }
@@ -131,11 +145,43 @@ button {
     margin-top: 20px;
     margin-left: 48px;
     margin-right: 48px;
+    @media screen and (max-width: 992px) {
+      margin-top: 15px;
+      margin-left: 40px;
+      margin-right: 40px;
+    }
+    @media screen and (max-width: 768px) {
+      margin-top: 10px;
+      margin-left: 34px;
+      margin-right: 34px;
+    }
+    @media screen and (max-width: 525px) {
+      margin-top: 7px;
+      margin-left: 24px;
+      margin-right: 24px;
+    }
+    @media screen and (max-width: 375px) {
+      margin-top: 3px;
+      margin-left: 14px;
+      margin-right: 14px;
+    }
   }
   form {
     .row {
       --bs-gutter-x: 16px; // columnların arasındaki boşluk
       margin-top: 24px;
+      @media screen and (max-width: 992px) {
+        margin-top: 20px;
+      }
+      @media screen and (max-width: 768px) {
+        margin-top: 16px;
+      }
+      @media screen and (max-width: 525px) {
+        margin-top: 10px;
+      }
+      @media screen and (max-width: 375px) {
+        margin-top: 5px;
+      }
     }
     label {
       font-weight: 500;
@@ -144,7 +190,7 @@ button {
       color: $red;
       &.form-check-label {
         font-weight: 500;
-        font-size: 11px;
+        @include responsiveText(11px);
         color: $gray;
         margin-left: 8px;
       }
@@ -159,15 +205,46 @@ button {
       font-weight: 500;
       @include responsiveText(14px);
       resize: none;
+      height: 48px;
+      @media screen and (max-width: 992px) {
+        height: 38px;
+      }
+      @media screen and (max-width: 768px) {
+        height: 28px;
+      }
+      @media screen and (max-width: 375px) {
+        height: 24px;
+      }
     }
     textarea {
       min-height: 96px;
+      @media screen and (max-width: 991px) {
+        min-height: 86px;
+      }
+      @media screen and (max-width: 768px) {
+        min-height: 76px;
+      }
+      @media screen and (max-width: 375px) {
+        min-height: 66px;
+      }
+    }
+    select {
+      padding-top: 0;
+      padding-bottom: 0;
     }
     .form-check-input {
       background-color: #f3f3f3;
       height: 21px;
       width: 21px;
       cursor: pointer;
+      @media screen and (max-width: 992px) {
+        width: 16px;
+        height: 16px;
+      }
+      @media screen and (max-width: 768px) {
+        width: 14px;
+        height: 14px;
+      }
     }
     .form-check-input:checked[type='radio'] {
       background: $green;
@@ -175,14 +252,41 @@ button {
     }
     .form-check {
       padding: 0;
+      display: inline-flex;
+      align-items: center;
     }
   }
   .ok {
     margin-top: 24px;
     margin-bottom: 48px;
+    margin-left: 48px;
     margin-right: 48px;
     display: flex;
     justify-content: flex-end;
+    @media screen and (max-width: 992px) {
+      margin-top: 18px;
+      margin-bottom: 40px;
+      margin-left: 40px;
+      margin-right: 40px;
+    }
+    @media screen and (max-width: 768px) {
+      margin-top: 14px;
+      margin-bottom: 34px;
+      margin-left: 34px;
+      margin-right: 34px;
+    }
+    @media screen and (max-width: 525px) {
+      margin-top: 10px;
+      margin-bottom: 24px;
+      margin-left: 24px;
+      margin-right: 24px;
+    }
+    @media screen and (max-width: 375px) {
+      margin-top: 3px;
+      margin-bottom: 14px;
+      margin-left: 14px;
+      margin-right: 14px;
+    }
     button {
       width: 112px;
       height: 48px;
@@ -190,6 +294,22 @@ button {
       justify-content: flex-end !important;
       svg {
         left: 15px;
+      }
+      @media screen and (max-width: 992px) {
+        width: 102px;
+        height: 43px;
+      }
+      @media screen and (max-width: 768px) {
+        width: 92px;
+        height: 38px;
+      }
+      @media screen and (max-width: 525px) {
+        width: 82px;
+        height: 33px;
+      }
+      @media screen and (max-width: 365px) {
+        width: 72px;
+        height: 28px;
       }
     }
   }
