@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IoCloseSharp, IoCheckmarkSharp } from 'react-icons/io5';
 import { Row, Col, Form, Button } from 'react-bootstrap';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 const NewActivity = () => {
+  const [startDate, setStartDate] = useState(new Date());
   return (
     <div id="specialModalBox">
       <div className="close">
@@ -14,16 +17,17 @@ const NewActivity = () => {
       <div className="formArea">
         <Form>
           <Row>
-            <Col xs={6} md={6}>
-              <Form.Label htmlFor="q">Tarih</Form.Label>
-              <Form.Control
-                type="q"
-                placeholder="Hesap No veya Hesap Adı İle Arayın..."
-                id="q"
+            <Col xs={4}>
+              <Form.Label htmlFor="date">Tarih</Form.Label>
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                className="form-control"
+                id="date"
               />
             </Col>
-            <Col xs={6} md={6}>
-              <Form.Label htmlFor="text">Hesap Tipi</Form.Label>
+            <Col xs={4}>
+              <Form.Label htmlFor="category">Kategori</Form.Label>
               <Form.Select>
                 <option>Seçiniz</option>
                 <option>Option 1</option>
@@ -33,11 +37,15 @@ const NewActivity = () => {
                 <option>Option 5</option>
               </Form.Select>
             </Col>
+            <Col xs={4}>
+              <Form.Label htmlFor="category">Tutar</Form.Label>
+              <Form.Control type="text" placeholder="Tutar" id="amount" />
+            </Col>
           </Row>
           <Row>
             <Col xs={12} md={12}>
-              <Form.Label>Example textarea</Form.Label>
-              <Form.Control as="textarea" rows={3} />
+              <Form.Label>Açıklama</Form.Label>
+              <Form.Control as="textarea" rows={3} placeholder="Açıklama" />
             </Col>
           </Row>
           <Row>
