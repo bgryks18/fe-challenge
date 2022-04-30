@@ -16,6 +16,11 @@ model Account {
   activities    Activity[]
 }
 
+model ActivityCategory {
+  id            Int        @id @default(autoincrement())
+  name          String
+  activities    Activity[]
+}
 model Activity {
   id          Int      @id @default(autoincrement())
   account     Account  @relation(fields: [accountId], references: [id])
@@ -23,5 +28,7 @@ model Activity {
   description String
   amount      Float
   type        Int
+  category    ActivityCategory?  @relation(fields: [categoryId], references: [id])
+  categoryId  Int?
   createdAt   DateTime
 }
