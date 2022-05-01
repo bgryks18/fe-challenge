@@ -4078,6 +4078,11 @@ csstype@^3.0.2:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.0.11.tgz#d66700c5eacfac1940deb4e3ee5642792d85cd33"
   integrity sha512-sa6P2wJ+CAbgyy4KFssIb/JNMLxFvKF1pCYCSXS8ZMuqZnMsrxqI2E5sPyoTpxoPU/gVZMzr2zjOfg8GIZOMsw==
 
+currency-icons@^1.0.14:
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/currency-icons/-/currency-icons-1.0.14.tgz#b576d3199de3d0075297211433fd3e81327f860f"
+  integrity sha512-yuocDblMO5NlrHE+3fUfFIJKrlbCGxiyoegsOZVTuQ61iN2O3gadn6UvT3h/5Dv7v0eGck4aFrChc8+5EiKyCg==
+
 cypress@^8.3.0:
   version "8.7.0"
   resolved "https://registry.yarnpkg.com/cypress/-/cypress-8.7.0.tgz#2ee371f383d8f233d3425b6cc26ddeec2668b6da"
