@@ -321,6 +321,12 @@ body {
     transition: all 0.5s;
   }
 }
+.errorBox {
+  margin-top: 2px;
+  .errorBoxHeader {
+    color: $red !important;
+  }
+}
 @keyframes showBox {
   to {
     opacity: 1;
