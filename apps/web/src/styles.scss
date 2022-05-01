@@ -320,6 +320,14 @@ body {
     margin: 0;
     transition: all 0.5s;
   }
+  .success {
+    border: 1px solid #1c5000;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 5%;
+    color: $black;
+    @include responsiveText(14px);
+  }
 }
 .errorBox {
   margin-top: 2px;
