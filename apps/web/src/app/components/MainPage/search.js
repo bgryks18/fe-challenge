@@ -1,12 +1,29 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Modal, Form, Button } from 'react-bootstrap';
 import styles from './styles/search.module.scss';
 import { IoAddSharp } from 'react-icons/io5';
 import NewAccount from '../newAccount';
+import { searchAccounts } from '../../actions/accountAction';
 const Search = () => {
   const [newAccountModal, setNewAccountModal] = useState(false);
+  const [searchQuery, setSearchQuery] = useState({ keyw: '', type: '' });
+
+  const dispatch = useDispatch();
+
   const switchAccountModal = () => {
     setNewAccountModal(!newAccountModal);
+  };
+
+  useEffect(() => {
+    dispatch(searchAccounts(searchQuery));
+  }, [searchQuery]);
+  const setKeyword = (e) => {
+    setSearchQuery((prev) => ({ keyw: e.target.value, type: prev.type }));
+  };
+  const setAccountType = (e) => {
+    console.log(e.target.value);
+    setSearchQuery((prev) => ({ keyw: prev.keyw, type: e.target.value }));
   };
   return (
     <div id={styles.search}>
@@ -19,18 +36,16 @@ const Search = () => {
                 type="q"
                 placeholder="Hesap No veya Hesap Adı İle Arayın..."
                 id="q"
+                onChange={setKeyword}
               />
             </div>
 
             <div>
               <Form.Label htmlFor="text">Hesap Tipi</Form.Label>
-              <Form.Select>
-                <option>Seçiniz</option>
-                <option>Option 1</option>
-                <option>Option 2</option>
-                <option>Option 3</option>
-                <option>Option 4</option>
-                <option>Option 5</option>
+              <Form.Select onChange={setAccountType}>
+                <option value="">Seçiniz</option>
+                <option value="TRY">TL</option>
+                <option value="DOVIZ">Döviz</option>
               </Form.Select>
             </div>
             <div>

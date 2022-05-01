@@ -1,6 +1,4 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import styles from './app.module.scss';
 import MainPage from './pages/MainPage';
 import Activity from './pages/Activity';
 import NotFound from './components/notFound';

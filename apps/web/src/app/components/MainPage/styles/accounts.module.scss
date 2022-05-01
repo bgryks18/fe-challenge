@@ -47,6 +47,10 @@ $white: #f3f3f3;
       @media screen and (max-width: 375px) {
         height: 20px;
       }
+      cursor: pointer;
+      &:hover {
+        background-color: $white;
+      }
       div {
         border-left: 1px solid $lightGray;
         border-bottom: 1px solid $lightGray;
