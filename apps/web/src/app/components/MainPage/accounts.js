@@ -3,6 +3,7 @@ import styles from './styles/accounts.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import AccountItem from './accountItem';
 import { getAccounts } from '../../actions/accountAction';
+import { Link } from 'react-router-dom';
 const Accounts = () => {
   const states = useSelector((state) => state.accountState);
   const dispatch = useDispatch();
@@ -31,13 +32,17 @@ const Accounts = () => {
           {dAccounts &&
             dAccounts.map((accountItem, i) => {
               return (
-                <div className={styles.accountItem} key={i}>
+                <Link
+                  className={styles.accountItem}
+                  key={accountItem.id}
+                  to={`Activity/${accountItem.id}`}
+                >
                   <AccountItem
                     currency={accountItem.currency}
                     accountNumber={accountItem.accountNumber}
                     name={accountItem.name}
                   />
-                </div>
+                </Link>
               );
             })}
           {emptyCells &&

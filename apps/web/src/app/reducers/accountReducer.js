@@ -3,6 +3,7 @@ const initialState = {
   searchAccounts: [],
   accountsLoading: true,
   categories: [],
+  modal: false,
   error: false,
   errors: [],
 };
@@ -58,6 +59,11 @@ export default (state = initialState, action) => {
         }
       });
       return { ...state, accounts: searchedArr, accountsLoading: false };
+
+    case 'postAccounts':
+      return { ...state, accounts: [...state.accounts, action.payload] };
+    case 'toggleModal':
+      return { ...state, modal: !state.modal };
     default:
       return state;
   }

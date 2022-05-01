@@ -1,17 +1,26 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { IoCloseSharp, IoCheckmarkSharp } from 'react-icons/io5';
+import { FcCheckmark } from 'react-icons/fc';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleModal, postAccounts } from '../actions/accountAction';
 const NewAccount = () => {
+  const [success, setSuccess] = useState(false);
+  const states = useSelector((state) => state.accountState);
+  const dispatch = useDispatch();
+  const onHide = () => {
+    dispatch(toggleModal());
+  };
   const schema = yup
     .object({
-      accountName: yup.string().required('Bu alan zorunludur.'),
-      accountType: yup
+      name: yup.string().required('Bu alan zorunludur.'),
+      currency: yup
         .string()
         .required('Bu alan zorunludur.')
-        .notOneOf(['Seçiniz'], 'Bu alan zorunludur'),
+        .notOneOf([''], 'Bu alan zorunludur'),
     })
     .required();
 
@@ -20,54 +29,62 @@ const NewAccount = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    dispatch(postAccounts(data));
+    setSuccess(true);
+  };
   return (
     <div id="specialModalBox">
-      <div className="close">
+      <div className="close" onClick={onHide}>
         <IoCloseSharp />
       </div>
 
       <div className="title">
         <h2>Yeni Hesap Ekle</h2>
       </div>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <div className="formArea">
-          <Row>
-            <Col xs={6}>
-              <Form.Label htmlFor="accountName">Hesap Adı</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Hesap Adı"
-                id="accountName"
-                {...register('accountName')}
-              />
-              {errors.accountName?.message && (
-                <p className="error">{errors.accountName?.message}</p>
-              )}
-            </Col>
-            <Col xs={6}>
-              <Form.Label htmlFor="accountType">Hesap Tipi</Form.Label>
-              <Form.Select {...register('accountType')}>
-                <option>Seçiniz</option>
-                <option>Option 1</option>
-                <option>Option 2</option>
-                <option>Option 3</option>
-                <option>Option 4</option>
-                <option>Option 5</option>
-              </Form.Select>
-              {errors.accountType?.message && (
-                <p className="error">{errors.accountType?.message}</p>
-              )}
-            </Col>
-          </Row>
-        </div>
-        <div className="ok">
-          <Button type="submit">
-            <IoCheckmarkSharp />
-            KAYDET
-          </Button>
-        </div>
-      </Form>
+      {success ? (
+        <p className="success">
+          <FcCheckmark /> Ekleme başarılı.
+        </p>
+      ) : (
+        <Form onSubmit={handleSubmit(onSubmit)}>
+          <div className="formArea">
+            <Row>
+              <Col xs={6}>
+                <Form.Label htmlFor="name">Hesap Adı</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Hesap Adı"
+                  id="name"
+                  {...register('name')}
+                />
+                {errors.name?.message && (
+                  <p className="error">{errors.name?.message}</p>
+                )}
+              </Col>
+              <Col xs={6}>
+                <Form.Label htmlFor="currency">Hesap Tipi</Form.Label>
+                <Form.Select {...register('currency')}>
+                  <option value="">Seçiniz</option>
+                  <option value="TRY">Türk Lirası</option>
+                  <option value="GBP">İngiliz Sterlini</option>
+                  <option value="EUR">Euro</option>
+                  <option value="USD">Amerikan Doları</option>
+                </Form.Select>
+                {errors.currency?.message && (
+                  <p className="error">{errors.currency?.message}</p>
+                )}
+              </Col>
+            </Row>
+          </div>
+          <div className="ok">
+            <Button type="submit">
+              <IoCheckmarkSharp />
+              KAYDET
+            </Button>
+          </div>
+        </Form>
+      )}
     </div>
   );
 };

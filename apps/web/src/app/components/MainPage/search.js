@@ -1,20 +1,18 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Modal, Form, Button } from 'react-bootstrap';
 import styles from './styles/search.module.scss';
 import { IoAddSharp } from 'react-icons/io5';
 import NewAccount from '../newAccount';
-import { searchAccounts } from '../../actions/accountAction';
+import { searchAccounts, toggleModal } from '../../actions/accountAction';
 const Search = () => {
-  const [newAccountModal, setNewAccountModal] = useState(false);
+  const states = useSelector((state) => state.accountState);
   const [searchQuery, setSearchQuery] = useState({ keyw: '', type: '' });
-
   const dispatch = useDispatch();
 
   const switchAccountModal = () => {
-    setNewAccountModal(!newAccountModal);
+    dispatch(toggleModal());
   };
-
   useEffect(() => {
     dispatch(searchAccounts(searchQuery));
   }, [searchQuery]);
@@ -22,7 +20,6 @@ const Search = () => {
     setSearchQuery((prev) => ({ keyw: e.target.value, type: prev.type }));
   };
   const setAccountType = (e) => {
-    console.log(e.target.value);
     setSearchQuery((prev) => ({ keyw: prev.keyw, type: e.target.value }));
   };
   return (
@@ -55,9 +52,9 @@ const Search = () => {
                 YENİ HESAP
               </Button>
               <Modal
-                show={newAccountModal}
-                onHide={switchAccountModal}
+                show={states.modal}
                 dialogAs={NewAccount}
+                onHide={switchAccountModal}
               />
             </div>
           </Form.Group>
