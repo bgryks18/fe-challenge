@@ -81,6 +81,13 @@ export default (state = initialState, action) => {
         activities: filteredActivities,
         activitiesLoading: false,
       };
+
+    case 'getCategories':
+      return {
+        ...state,
+        categories: action.payload,
+      };
+
     case 'toggleModal':
       return { ...state, modal: !state.modal };
     default:

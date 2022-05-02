@@ -15,7 +15,6 @@ const AccountActivity = () => {
   useEffect(() => {
     dispatch(getAccount({ id: params.id }));
   }, []);
-
   return (
     <div id={styles.accountActivity}>
       {states.accountLoading ? (

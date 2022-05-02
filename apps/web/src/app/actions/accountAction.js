@@ -31,6 +31,13 @@ export const getActivities = (data) => async (dispatch) => {
   }
 };
 
+export const getCategories = (data) => async (dispatch) => {
+  const res = await errorHandler(dispatch, 'get', 'activityCategory', data);
+  if (res) {
+    dispatch({ type: 'getCategories', payload: res.data });
+  }
+};
+
 export const toggleModal = () => async (dispatch) => {
   dispatch({ type: 'toggleModal' });
 };

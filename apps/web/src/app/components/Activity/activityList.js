@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './styles/accountActivity.module.scss';
 import { Alert } from 'react-bootstrap';
 import currencies from '../../utils/currencies';
 import icons from 'currency-icons';
 import Flag from 'react-world-flags';
-import { getActivities } from '../../actions/accountAction';
+import { getActivities, getCategories } from '../../actions/accountAction';
 import ActivityItem from './activityItem';
 import ItemsPagination from '../pagination';
 
@@ -17,13 +17,11 @@ const ActivityList = ({ account, id }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getActivities({ id }));
+    dispatch(getCategories());
   }, []);
 
   const getPerPage = useMemo(() => {
     return activitesPerPage;
-  }, []);
-  const getCurrentPage = useMemo(() => {
-    return currentPage;
   }, []);
   const setPage = useCallback((pageNumber) => {
     return setCurrentPage(pageNumber);
@@ -88,4 +86,4 @@ const ActivityList = ({ account, id }) => {
   );
 };
 
-export default ActivityList;
+export default React.memo(ActivityList);
