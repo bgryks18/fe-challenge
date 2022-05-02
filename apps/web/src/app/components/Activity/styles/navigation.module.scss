@@ -19,6 +19,8 @@ $black: #333333;
   justify-content: center;
   align-items: center;
   margin-top: 64px;
+  opacity: 0;
+  animation: showBox 0.6s forwards;
   @media screen and (max-width: 992px) {
     margin-top: 2%;
   }
@@ -63,5 +65,10 @@ $black: #333333;
         font-size: 18px;
       }
     }
+  }
+}
+@keyframes showBox {
+  to {
+    opacity: 1;
   }
 }

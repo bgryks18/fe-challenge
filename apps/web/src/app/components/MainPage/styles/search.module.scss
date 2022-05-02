@@ -20,6 +20,8 @@ $black: #333333;
   justify-content: center;
   margin-top: 40px;
   transition: all 0.5s;
+  opacity: 0;
+  animation: showBox 0.6s forwards;
   @media screen and (max-width: 992px) {
     margin-top: 20px;
   }
@@ -114,5 +116,10 @@ $black: #333333;
         }
       }
     }
+  }
+}
+@keyframes showBox {
+  to {
+    opacity: 1;
   }
 }

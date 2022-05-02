@@ -1,19 +1,32 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './styles/accountActivity.module.scss';
-import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
 import { Alert } from 'react-bootstrap';
 import currencies from '../../utils/currencies';
 import icons from 'currency-icons';
 import Flag from 'react-world-flags';
 import { getActivities } from '../../actions/accountAction';
 import ActivityItem from './activityItem';
+import ItemsPagination from '../pagination';
 
 const ActivityList = ({ account, id }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [activitesPerPage, setActivitesPerPage] = useState(4);
+
   const states = useSelector((state) => state.accountState);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getActivities({ id }));
+  }, []);
+
+  const getPerPage = useMemo(() => {
+    return activitesPerPage;
+  }, []);
+  const getCurrentPage = useMemo(() => {
+    return currentPage;
+  }, []);
+  const setPage = useCallback((pageNumber) => {
+    return setCurrentPage(pageNumber);
   }, []);
   let flagCode = '';
   for (const [key, value] of Object.entries(currencies)) {
@@ -21,6 +34,13 @@ const ActivityList = ({ account, id }) => {
       flagCode = value;
     }
   }
+
+  const indexOfLastActivity = currentPage * activitesPerPage;
+  const indexOfFirstActivity = indexOfLastActivity - activitesPerPage;
+  const currentActivities = states.activities.slice(
+    indexOfFirstActivity,
+    indexOfLastActivity
+  );
   return (
     <div>
       <div className={styles.accountInfo}>
@@ -48,7 +68,7 @@ const ActivityList = ({ account, id }) => {
             </span>
           </div>
           <div className={styles.activityList}>
-            {states.activities.map((activity) => (
+            {currentActivities.map((activity) => (
               <ActivityItem
                 key={activity.id}
                 activity={activity}
@@ -56,22 +76,12 @@ const ActivityList = ({ account, id }) => {
               />
             ))}
           </div>
-          <div className={styles.pagination}>
-            <div className={styles.paginationItems}>
-              <div className={`${styles.paginationItem} ${styles.move}`}>
-                <IoIosArrowBack />
-              </div>
-              <div className={`${styles.paginationItem} ${styles.chosen}`}>
-                1
-              </div>
-              <div className={styles.paginationItem}>2</div>
-              <div className={styles.paginationItem}>3</div>
-              <div className={styles.paginationItem}>4</div>
-              <div className={`${styles.paginationItem} ${styles.move}`}>
-                <IoIosArrowForward />
-              </div>
-            </div>
-          </div>
+          <ItemsPagination
+            perPage={getPerPage}
+            totalItems={states.activities.length}
+            setPage={setPage}
+            currentPage={currentPage}
+          />
         </>
       )}
     </div>
