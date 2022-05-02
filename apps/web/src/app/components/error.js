@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import ErrorItem from './errorItem';
 const Error = () => {
@@ -6,8 +5,8 @@ const Error = () => {
   return (
     <>
       <div style={{ position: 'fixed', right: '0', top: '0', zIndex: '999' }}>
-        {states.errors.map((errorItem) => {
-          return <ErrorItem errorItem={errorItem} />;
+        {states.errors.map((errorItem, i) => {
+          return <ErrorItem errorItem={errorItem} key={i} />;
         })}
       </div>
     </>

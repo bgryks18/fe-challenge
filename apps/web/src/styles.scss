@@ -350,6 +350,24 @@ body {
     color: $red !important;
   }
 }
+.pageError {
+  position: relative;
+  div {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    min-height: 60px;
+    width: 50%;
+    text-align: center;
+    @include responsiveText(15px);
+  }
+}
+.warning {
+  @include responsiveText(15px);
+  text-align: center;
+}
 @keyframes showBox {
   to {
     opacity: 1;

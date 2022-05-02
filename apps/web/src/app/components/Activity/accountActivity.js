@@ -1,16 +1,17 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import styles from './styles/accountActivity.module.scss';
 import { Spinner } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAccount, getCategories } from '../../actions/accountAction';
 import ActivityList from './activityList';
+import NotFound from '../notFound';
 const AccountActivity = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const states = useSelector((state) => state.accountState);
   if (states.accounts.length < 1) {
-    return <div>404 Not Found.</div>;
+    return <NotFound />;
   }
   useEffect(() => {
     dispatch(getAccount({ id: params.id }));

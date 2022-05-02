@@ -1,7 +1,15 @@
-import React from 'react';
-
+import { Alert } from 'react-bootstrap';
+import { FcHighPriority } from 'react-icons/fc';
 const NotFound = () => {
-  return <div>404 Not Found </div>;
+  return (
+    <div className="pageError">
+      <div className="pageError">
+        <Alert variant="danger">
+          <FcHighPriority /> 404 Not Found
+        </Alert>
+      </div>
+    </div>
+  );
 };
 
 export default NotFound;

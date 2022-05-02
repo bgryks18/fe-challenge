@@ -53,7 +53,7 @@ const ActivityList = ({ account, id }) => {
         </div>
       </div>
       {states.activities.length === 0 ? (
-        <Alert variant="warning" className="mt-2">
+        <Alert variant="warning" className="mt-2 warning">
           Hiç hesap hareketi bulunamadı.
         </Alert>
       ) : (
