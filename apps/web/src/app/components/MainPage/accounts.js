@@ -48,7 +48,10 @@ const Accounts = () => {
           {emptyCells &&
             emptyCells.map((item, index) => {
               return (
-                <div className={styles.accountItem} key={index}>
+                <div
+                  className={`${styles.accountItem} ${styles.empty}`}
+                  key={index}
+                >
                   <div></div>
                   <div></div>
                   <div></div>

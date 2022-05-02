@@ -58,7 +58,7 @@ $white: #f3f3f3;
         border-bottom-left-radius: 12px;
         border-bottom-right-radius: 12px;
       }
-      &:hover:not(:first-child) {
+      &:hover:not(:first-child):not(.empty) {
         cursor: pointer;
         background-color: $white;
       }
