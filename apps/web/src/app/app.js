@@ -19,7 +19,9 @@ const App = () => {
       {isError && <Error />}
       <Routes>
         <Route index element={<MainPage />} />
-        <Route path="Activity" element={<Activity />} />
+        <Route path="Activity" element={<Activity />}>
+          <Route path=":id" element={<Activity />} />
+        </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

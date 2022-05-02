@@ -97,23 +97,20 @@ $darkGray: #636363;
       }
     }
     .activityList {
-      display: grid;
-      grid-template-rows: repeat(4, 72px);
+      display: flex;
+      flex-direction: column;
       border-bottom: 1px solid $border;
-      @media screen and (max-width: 992px) {
-        grid-template-rows: repeat(4, 52px);
-      }
-      @media screen and (max-width: 768px) {
-        grid-template-rows: repeat(4, 38px);
-      }
       .activityListItem {
         display: grid;
         grid-template-columns: 72px auto;
+        height: 72px;
         @media screen and (max-width: 992px) {
           grid-template-columns: 52px auto;
+          height: 52px;
         }
         @media screen and (max-width: 768px) {
           grid-template-columns: 38px auto;
+          height: 38px;
         }
         div {
           border-top: 1px solid $border;

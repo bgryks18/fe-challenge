@@ -1,7 +1,11 @@
 const initialState = {
   accounts: [],
+  account: {},
+  accountLoading: true,
   searchAccounts: [],
   accountsLoading: true,
+  activities: [],
+  activitiesLoading: true,
   categories: [],
   modal: false,
   error: false,
@@ -29,6 +33,11 @@ export default (state = initialState, action) => {
         searchAccounts: action.payload,
         accountsLoading: false,
       };
+    case 'getAccount':
+      if (action.payload === '') {
+        return { ...state, account: {}, accountLoading: null };
+      } else
+        return { ...state, account: action.payload, accountLoading: false };
     case 'searchAccounts':
       const searchedArr = state.searchAccounts.filter((accountItem) => {
         const matchState =
@@ -62,6 +71,16 @@ export default (state = initialState, action) => {
 
     case 'postAccounts':
       return { ...state, accounts: [...state.accounts, action.payload] };
+
+    case 'getActivities':
+      const filteredActivities = action.payload.filter(
+        (item) => item.accountId == action.filter
+      );
+      return {
+        ...state,
+        activities: filteredActivities,
+        activitiesLoading: false,
+      };
     case 'toggleModal':
       return { ...state, modal: !state.modal };
     default:
