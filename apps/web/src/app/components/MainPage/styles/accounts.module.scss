@@ -40,11 +40,11 @@ $white: #f3f3f3;
       grid-template-columns: 50px 270px 200px 200px;
       height: 50px;
       @media screen and (max-width: 992px) {
-        grid-template-columns: 40px 200px 120px 120px;
+        grid-template-columns: 40px 160px 100px 100px;
         height: 35px;
       }
       @media screen and (max-width: 768px) {
-        grid-template-columns: 30px 100px 90px 90px;
+        grid-template-columns: 30px 110px 90px 90px;
         height: 25px;
       }
       @media screen and (max-width: 375px) {
