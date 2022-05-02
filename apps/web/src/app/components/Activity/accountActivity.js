@@ -3,7 +3,7 @@ import styles from './styles/accountActivity.module.scss';
 import { Spinner } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAccount } from '../../actions/accountAction';
+import { getAccount, getCategories } from '../../actions/accountAction';
 import ActivityList from './activityList';
 const AccountActivity = () => {
   const params = useParams();
@@ -14,6 +14,7 @@ const AccountActivity = () => {
   }
   useEffect(() => {
     dispatch(getAccount({ id: params.id }));
+    dispatch(getCategories());
   }, []);
   return (
     <div id={styles.accountActivity}>

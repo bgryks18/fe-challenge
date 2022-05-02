@@ -16,14 +16,17 @@ const App = () => {
           <p>Hesap Uzmanı</p>
         </div>
       </div>
-      {isError && <Error />}
-      <Routes>
-        <Route index element={<MainPage />} />
-        <Route path="Activity" element={<Activity />}>
-          <Route path=":id" element={<Activity />} />
-        </Route>
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      {isError ? (
+        <Error />
+      ) : (
+        <Routes>
+          <Route index element={<MainPage />} />
+          <Route path="Activity" element={<Activity />}>
+            <Route path=":id" element={<Activity />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      )}
     </div>
   );
 };

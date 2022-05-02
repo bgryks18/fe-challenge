@@ -38,6 +38,13 @@ export const getCategories = (data) => async (dispatch) => {
   }
 };
 
+export const postActivities = (data) => async (dispatch) => {
+  const res = await errorHandler(dispatch, 'post', 'activity', data);
+  if (res) {
+    dispatch({ type: 'postActivities', payload: res.data });
+  }
+};
+
 export const toggleModal = () => async (dispatch) => {
   dispatch({ type: 'toggleModal' });
 };

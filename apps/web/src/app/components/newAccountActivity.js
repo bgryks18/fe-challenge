@@ -1,39 +1,50 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { IoCloseSharp, IoCheckmarkSharp } from 'react-icons/io5';
+import { FcCheckmark } from 'react-icons/fc';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-const NewActivity = () => {
-  const today = new Date();
+import { useSelector, useDispatch } from 'react-redux';
+import { getCategories, postActivities } from '../actions/accountAction';
 
+const NewActivity = () => {
+  const [success, setSuccess] = useState(false);
+  const states = useSelector((state) => state.accountState);
+  const params = useParams();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (states.categories.length === 0) {
+      dispatch(getCategories());
+    }
+  }, []);
+  const filteredIds = states.categories.map((item) => item.id.toString());
+  const today = new Date();
   const schema = yup
     .object({
-      activityDate: yup
+      createdAt: yup
         .date()
         .max(today, 'İleri tarihli hesap hareketi oluşturulamaz.')
         .nullable()
         .transform((curr, orig) => (orig === '' ? null : curr))
         .required('Bu alan zorunludur'),
 
-      category: yup
+      categoryId: yup
         .string()
         .required('Bu alan zorunludur.')
-        .notOneOf(['Seçiniz'], 'Bu alan zorunludur.'),
+        .oneOf(filteredIds, 'Lütfen bir kategori seçin'),
 
       amount: yup
         .number()
-        .round('floor')
+        .required()
         .min(0, 'Tutar negatif olamaz.')
         .transform((value) => (isNaN(value) ? undefined : value))
         .nullable()
         .required('Lütfen geçerli bir tutar girin.'),
 
       description: yup.string().required('Bu alan zorunludur.'),
-      activityType: yup
-        .string()
-        .nullable()
-        .oneOf(['expense', 'income'], 'Lütfen seçim yapın.'),
+      type: yup.string().nullable().oneOf(['0', '1'], 'Lütfen seçim yapın.'),
     })
     .required();
 
@@ -42,7 +53,17 @@ const NewActivity = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    const formData = {
+      ...data,
+      categoryId: parseInt(data.categoryId),
+      type: parseInt(data.type),
+      accountId: parseInt(params.id),
+      createdAt: data.createdAt.toISOString(),
+    };
+    dispatch(postActivities({ data: formData }));
+    setSuccess(true);
+  };
   return (
     <div id="specialModalBox">
       <div className="close">
@@ -52,96 +73,102 @@ const NewActivity = () => {
       <div className="title">
         <h2>Yeni Hesap Hareketi Ekle</h2>
       </div>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <div className="formArea">
-          <Row>
-            <Col xs={4}>
-              <Form.Label htmlFor="date">Tarih</Form.Label>
-              <Form.Control
-                type="date"
-                {...register('activityDate')}
-              ></Form.Control>
-              {errors.activityDate?.message && (
-                <p className="error">{errors.activityDate?.message}</p>
-              )}
-            </Col>
-            <Col xs={4}>
-              <Form.Label htmlFor="category">Kategori</Form.Label>
-              <Form.Select {...register('category')} id="category">
-                <option>Seçiniz</option>
-                <option>Option 1</option>
-                <option>Option 2</option>
-                <option>Option 3</option>
-                <option>Option 4</option>
-                <option>Option 5</option>
-              </Form.Select>
-              {errors.category?.message && (
-                <p className="error">{errors.category?.message}</p>
-              )}
-            </Col>
-            <Col xs={4}>
-              <Form.Label htmlFor="amount">Tutar</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Tutar"
-                id="amount"
-                {...register('amount')}
-              />
-              {errors.amount?.message && (
-                <p className="error">{errors.amount?.message}</p>
-              )}
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12} md={12}>
-              <Form.Label>Açıklama</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                placeholder="Açıklama"
-                {...register('description')}
-              />
-              {errors.description?.message && (
-                <p className="error">{errors.description?.message}</p>
-              )}
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <Form.Label>Hareket Türü</Form.Label>
-            </Col>
-            <Col xs={12}>
-              <Form.Check
-                inline
-                label="GELİR"
-                name="group1"
-                type="radio"
-                value="income"
-                id={`inline-radio-1`}
-                {...register('activityType')}
-              />
-              <Form.Check
-                inline
-                label="GİDER"
-                name="group1"
-                type="radio"
-                value="expense"
-                id={`inline-radio-2`}
-                {...register('activityType')}
-              />
-              {errors.activityType?.message && (
-                <p className="error">{errors.activityType?.message}</p>
-              )}
-            </Col>
-          </Row>
-        </div>
-        <div className="ok">
-          <Button type="submit">
-            <IoCheckmarkSharp />
-            KAYDET
-          </Button>
-        </div>
-      </Form>
+      {success ? (
+        <p className="success">
+          <FcCheckmark /> Ekleme başarılı.
+        </p>
+      ) : (
+        <Form onSubmit={handleSubmit(onSubmit)}>
+          <div className="formArea">
+            <Row>
+              <Col xs={4}>
+                <Form.Label htmlFor="createdAt">Tarih</Form.Label>
+                <Form.Control
+                  type="date"
+                  {...register('createdAt')}
+                ></Form.Control>
+                {errors.createdAt?.message && (
+                  <p className="error">{errors.createdAt?.message}</p>
+                )}
+              </Col>
+              <Col xs={4}>
+                <Form.Label htmlFor="categoryId">Kategori</Form.Label>
+                <Form.Select {...register('categoryId')} id="categoryId">
+                  <option value="">Seçiniz</option>
+                  {states.categories.map(({ id, name }) => (
+                    <option value={id} key={id}>
+                      {name}
+                    </option>
+                  ))}
+                </Form.Select>
+                {errors.categoryId?.message && (
+                  <p className="error">{errors.categoryId?.message}</p>
+                )}
+              </Col>
+              <Col xs={4}>
+                <Form.Label htmlFor="amount">Tutar</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Tutar"
+                  id="amount"
+                  {...register('amount')}
+                />
+                {errors.amount?.message && (
+                  <p className="error">{errors.amount?.message}</p>
+                )}
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12} md={12}>
+                <Form.Label>Açıklama</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={3}
+                  placeholder="Açıklama"
+                  {...register('description')}
+                />
+                {errors.description?.message && (
+                  <p className="error">{errors.description?.message}</p>
+                )}
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12}>
+                <Form.Label>Hareket Türü</Form.Label>
+              </Col>
+              <Col xs={12}>
+                <Form.Check
+                  inline
+                  label="GELİR"
+                  name="group1"
+                  type="radio"
+                  value="1"
+                  id={`inline-radio-1`}
+                  {...register('type')}
+                />
+                <Form.Check
+                  inline
+                  label="GİDER"
+                  name="group1"
+                  type="radio"
+                  value="0"
+                  id={`inline-radio-2`}
+                  {...register('type')}
+                />
+                {errors.type?.message && (
+                  <p className="error">{errors.type?.message}</p>
+                )}
+              </Col>
+            </Row>
+          </div>
+          <div className="ok">
+            <Button type="submit">
+              <IoCheckmarkSharp />
+              KAYDET
+            </Button>
+          </div>
+        </Form>
+      )}
     </div>
   );
 };

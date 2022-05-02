@@ -30,7 +30,7 @@ const NewAccount = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
   const onSubmit = (data) => {
-    dispatch(postAccounts(data));
+    dispatch(postAccounts({ data }));
     setSuccess(true);
   };
   return (

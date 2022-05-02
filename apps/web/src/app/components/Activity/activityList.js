@@ -5,7 +5,7 @@ import { Alert } from 'react-bootstrap';
 import currencies from '../../utils/currencies';
 import icons from 'currency-icons';
 import Flag from 'react-world-flags';
-import { getActivities, getCategories } from '../../actions/accountAction';
+import { getActivities } from '../../actions/accountAction';
 import ActivityItem from './activityItem';
 import ItemsPagination from '../pagination';
 
@@ -17,7 +17,6 @@ const ActivityList = ({ account, id }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getActivities({ id }));
-    dispatch(getCategories());
   }, []);
 
   const getPerPage = useMemo(() => {

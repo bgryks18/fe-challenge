@@ -5,7 +5,9 @@ import styles from './styles/navigation.module.scss';
 import { IoAddSharp, IoArrowBackOutline } from 'react-icons/io5';
 import { Modal } from 'react-bootstrap';
 import NewActivity from '../newAccountActivity';
+import { useSelector } from 'react-redux';
 const Navigation = () => {
+  const states = useSelector((state) => state.accountState);
   const [newActivityModal, setNewActivityModal] = useState(false);
   const switchActivityModal = () => {
     setNewActivityModal(!newActivityModal);
@@ -20,15 +22,22 @@ const Navigation = () => {
           </Button>
         </Link>
 
-        <Button className={styles.newActivity} onClick={switchActivityModal}>
-          <IoAddSharp className={styles.plus} />
-          YENİ HESAP HAREKETİ
-        </Button>
-        <Modal
-          show={newActivityModal}
-          onHide={switchActivityModal}
-          dialogAs={NewActivity}
-        />
+        {states.account && (
+          <>
+            <Button
+              className={styles.newActivity}
+              onClick={switchActivityModal}
+            >
+              <IoAddSharp className={styles.plus} />
+              YENİ HESAP HAREKETİ
+            </Button>
+            <Modal
+              show={newActivityModal}
+              onHide={switchActivityModal}
+              dialogAs={NewActivity}
+            />
+          </>
+        )}
       </div>
     </div>
   );

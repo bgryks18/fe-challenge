@@ -1,6 +1,6 @@
 const initialState = {
   accounts: [],
-  account: {},
+  account: null,
   accountLoading: true,
   searchAccounts: [],
   accountsLoading: true,
@@ -44,9 +44,14 @@ export default (state = initialState, action) => {
           accountItem.name
             .trim()
             .replaceAll('I', 'ı')
+            .replaceAll('İ', 'i')
             .toLowerCase()
             .match(
-              action.payload.keyw.trim().replaceAll('I', 'ı').toLowerCase()
+              action.payload.keyw
+                .trim()
+                .replaceAll('I', 'ı')
+                .replaceAll('İ', 'i')
+                .toLowerCase()
             ) ||
           accountItem.accountNumber
             .toString()
@@ -70,7 +75,11 @@ export default (state = initialState, action) => {
       return { ...state, accounts: searchedArr, accountsLoading: false };
 
     case 'postAccounts':
-      return { ...state, accounts: [...state.accounts, action.payload] };
+      return {
+        ...state,
+        accounts: [...state.accounts, action.payload],
+        searchAccounts: [...state.searchAccounts, action.payload],
+      };
 
     case 'getActivities':
       const filteredActivities = action.payload.filter(
@@ -81,7 +90,11 @@ export default (state = initialState, action) => {
         activities: filteredActivities,
         activitiesLoading: false,
       };
-
+    case 'postActivities':
+      return {
+        ...state,
+        activities: [...state.activities, action.payload],
+      };
     case 'getCategories':
       return {
         ...state,
