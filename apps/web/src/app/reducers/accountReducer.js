@@ -12,6 +12,21 @@ const initialState = {
   errors: [],
 };
 
+const sort = (arr, key) => {
+  const sortedArr = arr.sort((a, b) => {
+    const keyA = a[key];
+    const keyB = b[key];
+    if (keyA > keyB) {
+      return -1;
+    }
+    if (keyA < keyB) {
+      return 1;
+    }
+    return 0;
+  });
+  return sortedArr;
+};
+
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'addError':
@@ -75,9 +90,13 @@ export default (state = initialState, action) => {
       return { ...state, accounts: searchedArr, accountsLoading: false };
 
     case 'postAccounts':
+      const newAccounts = sort(
+        [...state.accounts, action.payload],
+        'createdAt'
+      );
       return {
         ...state,
-        accounts: [...state.accounts, action.payload],
+        accounts: newAccounts,
         searchAccounts: [...state.searchAccounts, action.payload],
       };
 
@@ -91,9 +110,13 @@ export default (state = initialState, action) => {
         activitiesLoading: false,
       };
     case 'postActivities':
+      const newActivities = sort(
+        [...state.activities, action.payload],
+        'createdAt'
+      );
       return {
         ...state,
-        activities: [...state.activities, action.payload],
+        activities: newActivities,
       };
     case 'getCategories':
       return {
