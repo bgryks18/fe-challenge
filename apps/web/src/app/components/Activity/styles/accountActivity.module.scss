@@ -18,6 +18,7 @@ $red: #fa4616;
 $black: #333333;
 $border: #c3c3c3;
 $darkGray: #636363;
+$green: #008000;
 #accountActivity {
   width: 100%;
   display: flex;
@@ -167,6 +168,9 @@ $darkGray: #636363;
                 @include responsiveText(16px);
                 &.spent {
                   color: $red;
+                }
+                &:not(.spent) {
+                  color: $green;
                 }
               }
             }
