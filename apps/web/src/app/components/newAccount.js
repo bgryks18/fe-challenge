@@ -68,7 +68,6 @@ const NewAccount = () => {
                   <option value="">Seçiniz</option>
                   <option value="TRY">Türk Lirası</option>
                   <option value="GBP">İngiliz Sterlini</option>
-                  <option value="EUR">Euro</option>
                   <option value="USD">Amerikan Doları</option>
                 </Form.Select>
                 {errors.currency?.message && (
