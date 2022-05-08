@@ -7,7 +7,11 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
-import { getCategories, postActivities } from '../actions/accountAction';
+import {
+  getCategories,
+  postActivities,
+  toggleModal,
+} from '../actions/accountAction';
 
 const NewActivity = () => {
   const [success, setSuccess] = useState(false);
@@ -19,6 +23,9 @@ const NewActivity = () => {
       dispatch(getCategories());
     }
   }, []);
+  const onHide = () => {
+    dispatch(toggleModal());
+  };
   const filteredIds = states.categories.map((item) => item.id.toString());
   const today = new Date();
   const schema = yup
@@ -66,7 +73,7 @@ const NewActivity = () => {
   };
   return (
     <div id="specialModalBox">
-      <div className="close">
+      <div className="close" onClick={onHide}>
         <IoCloseSharp />
       </div>
 

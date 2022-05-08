@@ -5,12 +5,13 @@ import styles from './styles/navigation.module.scss';
 import { IoAddSharp, IoArrowBackOutline } from 'react-icons/io5';
 import { Modal } from 'react-bootstrap';
 import NewActivity from '../newAccountActivity';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleModal } from '../../actions/accountAction';
 const Navigation = () => {
   const states = useSelector((state) => state.accountState);
-  const [newActivityModal, setNewActivityModal] = useState(false);
+  const dispatch = useDispatch();
   const switchActivityModal = () => {
-    setNewActivityModal(!newActivityModal);
+    dispatch(toggleModal());
   };
   return (
     <div id={styles.navigation}>
@@ -32,7 +33,7 @@ const Navigation = () => {
               YENİ HESAP HAREKETİ
             </Button>
             <Modal
-              show={newActivityModal}
+              show={states.modal}
               onHide={switchActivityModal}
               dialogAs={NewActivity}
             />
