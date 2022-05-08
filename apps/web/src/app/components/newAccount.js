@@ -5,11 +5,10 @@ import { Row, Col, Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { toggleModal, postAccounts } from '../actions/accountAction';
 const NewAccount = () => {
   const [success, setSuccess] = useState(false);
-  const states = useSelector((state) => state.accountState);
   const dispatch = useDispatch();
   const onHide = () => {
     dispatch(toggleModal());
